@@ -22,17 +22,22 @@ public class BoundaryPrendreEtal {
 			if (!controlPrendreEtal.resteEtals()) {
 				System.out.println("Désolée " + nomVendeur + " ,je n'ai plus d'étal qui ne soit pas déjà occupé.");
 			} else {
-				installerVendeur(nomVendeur);
+				int numEtal = installerVendeur(nomVendeur);
+				if (numEtal != -1) {
+					System.out.println("Le vendeur " + nomVendeur + " s'est installé à l'étal n°" + numEtal + ".");
+				}
 			}
 		}
 	}
 
-	private void installerVendeur(String nomVendeur) {
+	private int installerVendeur(String nomVendeur) {
 		System.out.println("c'est parfait, il me reste un étal pour vous !");
 		System.out.println("Il me faudrait quelques renseignements :");
 		System.out.println("Quel produit souhaitez-vous vendre?");
 		String produit = scan.nextLine();
 		int nbProduit = Clavier.entrerEntier("Combien souhaitez vous en vendre");
-		controlPrendreEtal.prendreEtal(nomVendeur, produit, nbProduit);
+		int numEtal = -1;
+		numEtal = controlPrendreEtal.prendreEtal(nomVendeur, produit, nbProduit);
+		return numEtal;
 	}
 }
